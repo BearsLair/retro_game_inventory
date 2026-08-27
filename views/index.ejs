@@ -6,6 +6,11 @@
     <title>Retro Game Inventory</title>
   </head>
   <body>
-    <h1>Holy crap it works!</h1>
+    <h1>Inventory</h1>
+    <ol>
+    <% locals.stock.forEach(item => { %>
+        <li>Name: <%= item.name %> | Console: <%= item.console %> | Quantity in Stock: <%= item.quantity %> | Price: <%= item.price %> </li>
+    <% }); %>
+    </ol>
   </body>
 </html>
