@@ -20,8 +20,34 @@ async function getGameDetails(req, res) {
   }
 }
 
+async function postGameDetails(req, res) {
+  const {
+    name,
+    console,
+    quantity,
+    price,
+    developer,
+    publisher,
+    genre,
+    releaseyear,
+  } = req.body;
+
+  db.postGameDetails(
+    name,
+    console,
+    quantity,
+    price,
+    developer,
+    publisher,
+    genre,
+    releaseyear,
+  );
+  res.redirect("/");
+}
+
 // Note: not exporting leads to TypeError (handler function needed)
 module.exports = {
   getAllStock,
   getGameDetails,
+  postGameDetails,
 };
