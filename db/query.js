@@ -24,7 +24,7 @@ async function getGameDetails(stockID) {
 
 async function postGameDetails(
   name,
-  console,
+  system,
   quantity,
   price,
   developer,
@@ -33,19 +33,21 @@ async function postGameDetails(
   releaseyear,
 ) {
   try {
-    const results = await pool.query(
-      "INSERT INTO stock (name, console, quantity, price) VALUES ($1, $2, $3, $4) RETURNING stockid;",
-      [name, console, quantity, price],
+    const result = await pool.query(
+      `INSERT INTO stock (name, console, quantity, price) VALUES ($1, $2, $3, $4) RETURNING stockid;`,
+      [name, system, quantity, price],
     );
-    const id = result.rows[0].stockID;
+
+    console.log("result returned from query: ", result);
+    const id = result.rows[0].stockid;
+    console.log("id returned: ", id);
 
     await pool.query(
-      "INSERT INTO game_details (Developer, Publisher, Genre, ReleaseYear, stockID) VALUES ($1, $2, $3, $4)",
+      "INSERT INTO game_details (Developer, Publisher, Genre, ReleaseYear, stockID) VALUES ($1, $2, $3, $4, $5);",
       [developer, publisher, genre, releaseyear, id],
     );
-    console.log("Game added to database.");
   } catch (error) {
-    console.error("Error adding game details to db: ", error);
+    console.error(error);
   }
 }
 

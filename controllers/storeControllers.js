@@ -20,10 +20,18 @@ async function getGameDetails(req, res) {
   }
 }
 
+async function getGameForm(req, res) {
+  try {
+    res.render("form");
+  } catch (error) {
+    console.error("Error getting form: ", error);
+  }
+}
+
 async function postGameDetails(req, res) {
   const {
     name,
-    console,
+    system,
     quantity,
     price,
     developer,
@@ -34,7 +42,7 @@ async function postGameDetails(req, res) {
 
   db.postGameDetails(
     name,
-    console,
+    system,
     quantity,
     price,
     developer,
@@ -49,5 +57,6 @@ async function postGameDetails(req, res) {
 module.exports = {
   getAllStock,
   getGameDetails,
+  getGameForm,
   postGameDetails,
 };

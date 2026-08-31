@@ -7,23 +7,44 @@
   </head>
   <body>
     <h1>Add Game</h1>
-    <form action="/form" method="POST">
-      <label for="name"></label>
-      <input name="name" />
-      <label for="console"></label>
-      <input name="console" />
-      <label for="quantity"></label>
-      <input name="quantity" />
-      <label for="price"></label>
-      <input name="price" />
-      <label for="developer"></label>
-      <input name="developer" />
-      <label for="publisher"></label>
-      <input name="publisher" />
-      <label for="genre"></label>
-      <input name="genre" />
-      <label for="releaseyear"></label>
-      <input name="releaseyear" />
+    <form
+      action="/form"
+      method="POST"
+      style="display: flex; flex-direction: column"
+    >
+      <div>
+        <label for="name">Name: </label>
+        <input name="name" />
+      </div>
+      <div>
+        <label for="system">Console: </label>
+        <input name="system" />
+      </div>
+      <div>
+        <label for="quantity">Quantity: </label>
+        <input name="quantity" />
+      </div>
+      <div>
+        <label for="price">Price: </label>
+        <input name="price" />
+      </div>
+      <div>
+        <label for="developer">Developer: </label>
+        <input name="developer" />
+      </div>
+      <div>
+        <label for="publisher">Publisher: </label>
+        <input name="publisher" />
+      </div>
+      <div>
+        <label for="genre">Genre: </label>
+        <input name="genre" />
+      </div>
+      <div>
+        <label for="releaseyear">Release Year: </label>
+        <input name="releaseyear" />
+      </div>
+      <button type="submit" style="width: fit-content">Submit</button>
     </form>
   </body>
 </html>
