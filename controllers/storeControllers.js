@@ -20,6 +20,25 @@ async function getGameDetails(req, res) {
   }
 }
 
+// Get filtered games form
+async function getFilteredForm(req, res) {
+  try {
+    res.render("filter");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function getFilteredResults(req, res) {
+  try {
+    const query = req.query;
+    console.log("Query: ", query);
+    res.render("results");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function getGameForm(req, res) {
   try {
     res.render("form");
@@ -57,6 +76,8 @@ async function postGameDetails(req, res) {
 module.exports = {
   getAllStock,
   getGameDetails,
+  getFilteredForm,
+  getFilteredResults,
   getGameForm,
   postGameDetails,
 };
