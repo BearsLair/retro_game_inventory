@@ -31,8 +31,10 @@ async function getFilteredForm(req, res) {
 
 async function getFilteredResults(req, res) {
   try {
-    const query = req.query;
-    console.log("Query: ", query);
+    console.log(req.query);
+    const results = await db.getFilteredGames(req.query);
+    console.log("filtered results returned to controller: ", results);
+
     res.render("results");
   } catch (error) {
     console.error(error);

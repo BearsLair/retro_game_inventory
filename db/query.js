@@ -5,7 +5,7 @@ async function getAllStock() {
     const { rows } = await pool.query("SELECT * FROM stock");
     return rows;
   } catch (error) {
-    console.error("db retrieval error: ", error);
+    console.error("Error retrieving all games from db: ", error);
   }
 }
 
@@ -18,7 +18,24 @@ async function getGameDetails(stockID) {
     );
     return rows;
   } catch (error) {
-    console.error("Error getting game details: ", error);
+    console.error("Error getting game details from db: ", error);
+  }
+}
+
+async function getFilteredGames(query) {
+  console.log("query on db: ", query);
+  console.log("key: ", Object.keys(query)[0]);
+  console.log("value: ", query[Object.keys(query)[0]]);
+  try {
+    const { rows } = await pool.query(
+      `SELECT * FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE $1 = $2`,
+      [Object.keys(query)[0], query[Object.keys(query)[0]]],
+    );
+
+    console.log("rows to be returned by db: ", rows);
+    return rows;
+  } catch (error) {
+    console.error("Error retrieving filtered games from db", error);
   }
 }
 
@@ -58,7 +75,7 @@ async function postGameDetails(
     return { id, details: insertedDetails.rows[0] };
   } catch (error) {
     await client.query("ROLLBACK");
-    console.error("Error posting game details. Action aborted: ", error);
+    console.error("Error posting game details. Post method aborted: ", error);
   } finally {
     // Note to self: client is always released regardless of what happens
     client.release();
@@ -68,5 +85,6 @@ async function postGameDetails(
 module.exports = {
   getAllStock,
   getGameDetails,
+  getFilteredGames,
   postGameDetails,
 };
