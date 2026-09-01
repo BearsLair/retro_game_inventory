@@ -8,9 +8,16 @@ indexRouter.get("/", storeControllers.getAllStock);
 // Individual game information
 indexRouter.get("/details/:stockID", storeControllers.getGameDetails);
 
+// Filter results by console, developer, publisher, genre, or release year
+indexRouter.get("/filter", storeControllers.getFilteredForm);
+
+// Filter query results
+indexRouter.get("/results", storeControllers.getFilteredResults);
+
 // Retrieve game details input form
 indexRouter.get("/form", storeControllers.getGameForm);
 
+// Post to database
 indexRouter.post("/form", storeControllers.postGameDetails);
 
 // Note: not exporting leads to TypeError (handler function needed)
