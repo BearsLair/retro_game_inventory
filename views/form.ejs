@@ -16,35 +16,35 @@
     >
       <div>
         <label for="name">Name: </label>
-        <input name="name" />
+        <input name="name" value="<%= formData.name || '' %>" />
       </div>
       <div>
         <label for="system">Console: </label>
-        <input name="system" />
+        <input name="system" value="<%= formData.system || '' %>" />
       </div>
       <div>
         <label for="quantity">Quantity: </label>
-        <input name="quantity" />
+        <input name="quantity" value="<%= formData.quantity || '' %>" />
       </div>
       <div>
         <label for="price">Price: </label>
-        <input name="price" />
+        <input name="price" value="<%= formData.price || '' %>" />
       </div>
       <div>
         <label for="developer">Developer: </label>
-        <input name="developer" />
+        <input name="developer" value="<%= formData.developer || '' %>" />
       </div>
       <div>
         <label for="publisher">Publisher: </label>
-        <input name="publisher" />
+        <input name="publisher" value="<%= formData.publisher || '' %>" />
       </div>
       <div>
         <label for="genre">Genre: </label>
-        <input name="genre" />
+        <input name="genre" value="<%= formData.genre || '' %>" />
       </div>
       <div>
         <label for="releaseyear">Release Year: </label>
-        <input name="releaseyear" />
+        <input name="releaseyear" value="<%= formData.releaseyear || '' %>" />
       </div>
       <button type="submit" style="width: fit-content">Submit</button>
     </form>
