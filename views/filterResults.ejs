@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retro Game Store - Filter Results</title>
+  </head>
+  <body>
+    <ol>
+    <% filteredGames.forEach(item => { %>
+        <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+        <li>Name: <%= item.name %> | Console: <%= item.system %> | Quantity: <%= item.quantity %> | Price: <%= item.price %> <a href=<%= "/details/" + String(item.stockid)  %> >Details</a> </li>
+    <% }); %>
+    </ol>
+    <a href="/filter">Back to Filters</a>
+    <a href="/">Back to Inventory</a>
+  </body>
+</html>

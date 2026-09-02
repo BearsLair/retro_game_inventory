@@ -20,15 +20,23 @@ async function getGameDetails(req, res) {
   }
 }
 
+<<<<<<< HEAD
 // Get filtered games form
 async function getFilteredForm(req, res) {
   try {
     res.render("filter");
+=======
+async function getFilters(req, res) {
+  try {
+    const filters = await db.getFilterCategories();
+    res.render("filter", { filters: filters });
+>>>>>>> FilteredGames
   } catch (error) {
     console.error(error);
   }
 }
 
+<<<<<<< HEAD
 async function getFilteredResults(req, res) {
   try {
     console.log(req.query);
@@ -41,6 +49,65 @@ async function getFilteredResults(req, res) {
   }
 }
 
+=======
+// --------------------------------
+
+async function getSystemResults(req, res) {
+  try {
+    const filteredGames = await db.getSystemResults(req.params.system);
+
+    res.render("filterResults", {
+      filteredGames: filteredGames,
+    });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getDeveloperResults(req, res) {
+  try {
+    const filteredGames = await db.getDeveloperResults(req.params.developer);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getPublisherResults(req, res) {
+  try {
+    const filteredGames = await db.getPublisherResults(req.params.publisher);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getGenreResults(req, res) {
+  try {
+    const filteredGames = await db.getGenreResults(req.params.genre);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getReleaseYearResults(req, res) {
+  try {
+    const filteredGames = await db.getReleaseYearResults(
+      req.params.releaseyear,
+    );
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+// ---------------------------------------
+
+>>>>>>> FilteredGames
 async function getGameForm(req, res) {
   try {
     res.render("form");
@@ -78,8 +145,17 @@ async function postGameDetails(req, res) {
 module.exports = {
   getAllStock,
   getGameDetails,
+<<<<<<< HEAD
   getFilteredForm,
   getFilteredResults,
+=======
+  getFilters,
+  getSystemResults,
+  getDeveloperResults,
+  getPublisherResults,
+  getGenreResults,
+  getReleaseYearResults,
+>>>>>>> FilteredGames
   getGameForm,
   postGameDetails,
 };

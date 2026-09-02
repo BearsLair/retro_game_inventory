@@ -39,6 +39,92 @@ async function getFilteredGames(query) {
   }
 }
 
+async function getFilterCategories() {
+  try {
+    const systemQuery = await pool.query("SELECT DISTINCT system FROM stock");
+    const developerQuery = await pool.query(
+      "SELECT DISTINCT developer FROM game_details",
+    );
+    const publisherQuery = await pool.query(
+      "SELECT DISTINCT publisher FROM game_details",
+    );
+    const genre = await pool.query("SELECT DISTINCT genre FROM game_details");
+    const releaseYear = await pool.query(
+      "SELECT DISTINCT releaseyear FROM game_details",
+    );
+
+    return {
+      system: systemQuery.rows,
+      developer: developerQuery.rows,
+      publisher: publisherQuery.rows,
+      genre: genre.rows,
+      releaseyear: releaseYear.rows,
+    };
+  } catch (error) {
+    console.error("Error retrieving filter categories: ", error);
+  }
+}
+
+async function getSystemResults(system) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT *  FROM stock WHERE system = $1",
+      [system],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getDeveloperResults(developer) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price  FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE developer = $1",
+      [developer.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getPublisherResults(publisher) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price  FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE publisher = $1",
+      [publisher.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getGenreResults(genre) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE genre = $1",
+      [genre.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getReleaseYearResults(releaseyear) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE releaseyear = $1",
+      [releaseyear],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
 async function postGameDetails(
   name,
   system,
@@ -85,6 +171,11 @@ async function postGameDetails(
 module.exports = {
   getAllStock,
   getGameDetails,
-  getFilteredGames,
+  getFilterCategories,
+  getSystemResults,
+  getDeveloperResults,
+  getPublisherResults,
+  getGenreResults,
+  getReleaseYearResults,
   postGameDetails,
 };

@@ -6,7 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .env
+<<<<<<< HEAD
 populate.js
+=======
+populatedb.js
+>>>>>>> FilteredGames
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
