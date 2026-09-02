@@ -89,7 +89,7 @@ async function getReleaseYearResults(req, res) {
 
 async function getGameForm(req, res) {
   try {
-    res.render("form");
+    res.render("form", { formData: {} });
   } catch (error) {
     console.error("Error getting form: ", error);
   }
