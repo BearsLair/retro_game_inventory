@@ -36,7 +36,7 @@ exports.validators = [
     .notEmpty()
     .withMessage("Developer cannot be empty")
     .isLength({ max: 25 })
-    .withMessage("Deverloper must 25 characters or less"),
+    .withMessage("Developer must 25 characters or less"),
   body("publisher")
     .trim()
     .notEmpty()
@@ -53,7 +53,7 @@ exports.validators = [
     .trim()
     .notEmpty()
     .withMessage("Year cannot be empty")
-    .isLength({ max: 4 })
+    .isLength({ min: 4, max: 4 })
     .withMessage("Year must be a valid 4 digit year")
     .isInt()
     .withMessage("Year must be a valid year"),
