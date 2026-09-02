@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retro Game Store - Filters</title>
+  </head>
+  <body>
+    <h1>Filters</h1>
+    <h3>Filter by Console</h3>
+    <ul style="display: flex; flex-direction: row;">
+        <% filters.system.forEach(item => { %>
+            <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.system %></a></li>
+        <% }); %>
+    </ul>
+    <hr />
+    <h3>Filter by Developer</h3>
+    <ul style="display: flex; flex-direction: row;">
+        <% filters.developer.forEach(item => { %>
+            <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.developer.trim() %></a></li>
+        <% }); %>
+    </ul>
+    <hr />
+    <h3>Filter by Publisher</h3>
+    <ul style="display: flex; flex-direction: row;">
+        <% filters.publisher.forEach(item => { %>
+            <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.publisher.trim() %></a></li>
+        <% }); %>
+    </ul>
+    <hr />
+    <h3>Filter by Genre</h3>
+    <ul style="display: flex; flex-direction: row;">
+        <% filters.genre.forEach(item => { %>
+            <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.genre.trim() %></a></li>
+        <% }); %>
+    </ul>
+    <hr /><h3>Filter by Release Year</h3>
+    <ul style="display: flex; flex-direction: row;">
+        <% filters.releaseyear.forEach(item => { %>
+            <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
+            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.releaseyear %></a></li>
+        <% }); %>
+    </ul>
+  </body>
+</html>

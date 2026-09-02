@@ -20,6 +20,16 @@ async function getGameDetails(req, res) {
   }
 }
 
+async function getFilters(req, res) {
+  try {
+    const filters = await db.getFilterCategories();
+    console.log(filters);
+    res.render("filter", { filters: filters });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function getGameForm(req, res) {
   try {
     res.render("form");
@@ -57,6 +67,7 @@ async function postGameDetails(req, res) {
 module.exports = {
   getAllStock,
   getGameDetails,
+  getFilters,
   getGameForm,
   postGameDetails,
 };
