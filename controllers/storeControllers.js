@@ -20,36 +20,15 @@ async function getGameDetails(req, res) {
   }
 }
 
-<<<<<<< HEAD
-// Get filtered games form
-async function getFilteredForm(req, res) {
-  try {
-    res.render("filter");
-=======
 async function getFilters(req, res) {
   try {
     const filters = await db.getFilterCategories();
     res.render("filter", { filters: filters });
->>>>>>> FilteredGames
   } catch (error) {
     console.error(error);
   }
 }
 
-<<<<<<< HEAD
-async function getFilteredResults(req, res) {
-  try {
-    console.log(req.query);
-    const results = await db.getFilteredGames(req.query);
-    console.log("filtered results returned to controller: ", results);
-
-    res.render("results");
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-=======
 // --------------------------------
 
 async function getSystemResults(req, res) {
@@ -107,7 +86,6 @@ async function getReleaseYearResults(req, res) {
 
 // ---------------------------------------
 
->>>>>>> FilteredGames
 async function getGameForm(req, res) {
   try {
     res.render("form");
@@ -145,17 +123,12 @@ async function postGameDetails(req, res) {
 module.exports = {
   getAllStock,
   getGameDetails,
-<<<<<<< HEAD
-  getFilteredForm,
-  getFilteredResults,
-=======
   getFilters,
   getSystemResults,
   getDeveloperResults,
   getPublisherResults,
   getGenreResults,
   getReleaseYearResults,
->>>>>>> FilteredGames
   getGameForm,
   postGameDetails,
 };
