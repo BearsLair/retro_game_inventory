@@ -136,6 +136,18 @@ async function postGameDetails(req, res) {
   }
 }
 
+async function getEditGameForm(req, res) {
+  try {
+    const id = req.params.id;
+    const details = await db.getGameDetails(id);
+    res.render("edit", { details: details[0] });
+  } catch (error) {
+    console.log("Error retrieving edit form", error);
+  }
+}
+
+async function postEditGame() {}
+
 // Note: not exporting leads to TypeError (handler function needed)
 module.exports = {
   getAllStock,
@@ -148,4 +160,6 @@ module.exports = {
   getReleaseYearResults,
   getGameForm,
   postGameDetails,
+  getEditGameForm,
+  postEditGame,
 };

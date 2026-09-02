@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retro Game Store - Edit Game</title>
+  </head>
+  <body>
+    <h1>Edit Game</h1>
+    <a href="/">Back to Inventory</a>
+    <%- include("partials/error.ejs") %>
+    <form
+      action="/form"
+      method="POST"
+      style="margin-top: 10px; display: flex; flex-direction: column"
+    >
+      <div>
+        <label for="name">Name: </label>
+        <input name="name" value="<%= details.name || '' %>" />
+      </div>
+      <div>
+        <label for="system">Console: </label>
+        <input name="system" value="<%= details.system || '' %>" />
+      </div>
+      <div>
+        <label for="quantity">Quantity: </label>
+        <input name="quantity" value="<%= details.quantity || '' %>" />
+      </div>
+      <div>
+        <label for="price">Price: </label>
+        <input name="price" value="<%= details.price || '' %>" />
+      </div>
+      <div>
+        <label for="developer">Developer: </label>
+        <input name="developer" value="<%= details.developer || '' %>" />
+      </div>
+      <div>
+        <label for="publisher">Publisher: </label>
+        <input name="publisher" value="<%= details.publisher || '' %>" />
+      </div>
+      <div>
+        <label for="genre">Genre: </label>
+        <input name="genre" value="<%= details.genre || '' %>" />
+      </div>
+      <div>
+        <label for="releaseyear">Release Year: </label>
+        <input name="releaseyear" value="<%= details.releaseyear || '' %>" />
+      </div>
+      <button type="submit" style="width: fit-content">Submit Edit</button>
+    </form>
+  </body>
+</html>

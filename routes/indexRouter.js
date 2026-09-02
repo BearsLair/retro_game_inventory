@@ -39,8 +39,13 @@ indexRouter.get(
 // Retrieve game details input form
 indexRouter.get("/form", storeControllers.getGameForm);
 
-// Post game details to server
+// Retrieve game edit form
+indexRouter.get("/edit/:id", storeControllers.getEditGameForm);
+
+// Post game edit to database
+
+// Post game details to database
 indexRouter.post("/form", validators, storeControllers.postGameDetails);
 
-// Note: not exporting leads to TypeError (handler function needed)
+// Note to self: not exporting leads to TypeError (handler function needed)
 module.exports = indexRouter;
