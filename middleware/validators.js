@@ -49,12 +49,12 @@ exports.validators = [
     .withMessage("Genre cannot be empty")
     .isLength({ max: 25 })
     .withMessage("Genre must 25 characters or less"),
-  body("name")
+  body("releaseyear")
     .trim()
     .notEmpty()
     .withMessage("Year cannot be empty")
+    .isNumeric({ no_symbols: true })
+    .withMessage("Year must be a valid year")
     .isLength({ min: 4, max: 4 })
-    .withMessage("Year must be a valid 4 digit year")
-    .isInt()
-    .withMessage("Year must be a valid year"),
+    .withMessage("Year must be a valid 4 digit year"),
 ];
