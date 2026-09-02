@@ -1,4 +1,5 @@
 const db = require("../db/query");
+const { validationResult } = require("express-validator");
 
 async function getAllStock(req, res) {
   try {
@@ -95,28 +96,44 @@ async function getGameForm(req, res) {
 }
 
 async function postGameDetails(req, res) {
-  const {
-    name,
-    system,
-    quantity,
-    price,
-    developer,
-    publisher,
-    genre,
-    releaseyear,
-  } = req.body;
+  try {
+    // Retrive validation errors from request
+    const errors = validationResult(req);
 
-  db.postGameDetails(
-    name,
-    system,
-    quantity,
-    price,
-    developer,
-    publisher,
-    genre,
-    releaseyear,
-  );
-  res.redirect("/");
+    // Stop execution and display errors if errors found
+    if (!errors.isEmpty()) {
+      return res.status(400).render("form", {
+        errors: errors.array(), // Errors array available for iteration
+        formData: req.body, // Pass data to form so user doesn't reenter information
+      });
+    }
+
+    // No errors? Continue database post request
+    const {
+      name,
+      system,
+      quantity,
+      price,
+      developer,
+      publisher,
+      genre,
+      releaseyear,
+    } = req.body;
+
+    db.postGameDetails(
+      name,
+      system,
+      quantity,
+      price,
+      developer,
+      publisher,
+      genre,
+      releaseyear,
+    );
+    res.redirect("/");
+  } catch (error) {
+    console.error("post game details error: ", error);
+  }
 }
 
 // Note: not exporting leads to TypeError (handler function needed)

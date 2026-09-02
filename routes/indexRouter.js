@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const indexRouter = Router();
 const storeControllers = require("../controllers/storeControllers");
+const { validators } = require("../middleware/validators");
 
 // All games
 indexRouter.get("/", storeControllers.getAllStock);
@@ -39,7 +40,7 @@ indexRouter.get(
 indexRouter.get("/form", storeControllers.getGameForm);
 
 // Post game details to server
-indexRouter.post("/form", storeControllers.postGameDetails);
+indexRouter.post("/form", validators, storeControllers.postGameDetails);
 
 // Note: not exporting leads to TypeError (handler function needed)
 module.exports = indexRouter;
