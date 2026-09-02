@@ -23,12 +23,68 @@ async function getGameDetails(req, res) {
 async function getFilters(req, res) {
   try {
     const filters = await db.getFilterCategories();
-    console.log(filters);
     res.render("filter", { filters: filters });
   } catch (error) {
     console.error(error);
   }
 }
+
+// --------------------------------
+
+async function getSystemResults(req, res) {
+  try {
+    const filteredGames = await db.getSystemResults(req.params.system);
+
+    res.render("filterResults", {
+      filteredGames: filteredGames,
+    });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getDeveloperResults(req, res) {
+  try {
+    const filteredGames = await db.getDeveloperResults(req.params.developer);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getPublisherResults(req, res) {
+  try {
+    const filteredGames = await db.getPublisherResults(req.params.publisher);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getGenreResults(req, res) {
+  try {
+    const filteredGames = await db.getGenreResults(req.params.genre);
+
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+async function getReleaseYearResults(req, res) {
+  try {
+    const filteredGames = await db.getReleaseYearResults(
+      req.params.releaseyear,
+    );
+    res.render("filterResults", { filteredGames: filteredGames });
+  } catch (error) {
+    console.error("Error retrieving results", error);
+  }
+}
+
+// ---------------------------------------
 
 async function getGameForm(req, res) {
   try {
@@ -68,6 +124,11 @@ module.exports = {
   getAllStock,
   getGameDetails,
   getFilters,
+  getSystemResults,
+  getDeveloperResults,
+  getPublisherResults,
+  getGenreResults,
+  getReleaseYearResults,
   getGameForm,
   postGameDetails,
 };

@@ -7,11 +7,12 @@
   </head>
   <body>
     <h1>Filters</h1>
+    <a href="/">Back to Inventory</a>
     <h3>Filter by Console</h3>
     <ul style="display: flex; flex-direction: row;">
         <% filters.system.forEach(item => { %>
             <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
-            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.system %></a></li>
+            <li style="list-style-type: none; margin-right: 20px;"><a href=<%="/filter/system/" + String(item.system) %>><%= item.system %></a></li>
         <% }); %>
     </ul>
     <hr />
@@ -19,7 +20,7 @@
     <ul style="display: flex; flex-direction: row;">
         <% filters.developer.forEach(item => { %>
             <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
-            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.developer.trim() %></a></li>
+            <li style="list-style-type: none; margin-right: 20px;"><a href=<%= "/filter/developer/" + String(item.developer.replace(/\s/g, '_')) %>><%= item.developer %></a></li>
         <% }); %>
     </ul>
     <hr />
@@ -27,7 +28,7 @@
     <ul style="display: flex; flex-direction: row;">
         <% filters.publisher.forEach(item => { %>
             <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
-            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.publisher.trim() %></a></li>
+            <li style="list-style-type: none; margin-right: 20px;"><a href=<%="/filter/publisher/" + String(item.publisher.replace(/\s/g, '_')) %>><%= item.publisher %></a></li>
         <% }); %>
     </ul>
     <hr />
@@ -35,14 +36,14 @@
     <ul style="display: flex; flex-direction: row;">
         <% filters.genre.forEach(item => { %>
             <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
-            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.genre.trim() %></a></li>
+            <li style="list-style-type: none; margin-right: 20px;"><a href=<%="/filter/genre/" + String(item.genre.replace(/\s/g, '_')) %>><%= item.genre %></a></li>
         <% }); %>
     </ul>
     <hr /><h3>Filter by Release Year</h3>
     <ul style="display: flex; flex-direction: row;">
         <% filters.releaseyear.forEach(item => { %>
             <!-- The href in the anchor tag should not contain the colon (:) for the parameter -->
-            <li style="list-style-type: none; margin-right: 20px;"><a><%= item.releaseyear %></a></li>
+            <li style="list-style-type: none; margin-right: 20px;"><a href=<%="/filter/releaseyear/" + String(item.releaseyear) %>><%= item.releaseyear %></a></li>
         <% }); %>
     </ul>
   </body>

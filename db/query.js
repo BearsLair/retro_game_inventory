@@ -48,6 +48,66 @@ async function getFilterCategories() {
   }
 }
 
+async function getSystemResults(system) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT *  FROM stock WHERE system = $1",
+      [system],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getDeveloperResults(developer) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price  FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE developer = $1",
+      [developer.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getPublisherResults(publisher) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price  FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE publisher = $1",
+      [publisher.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getGenreResults(genre) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE genre = $1",
+      [genre.replace(/_/g, " ")],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
+async function getReleaseYearResults(releaseyear) {
+  try {
+    const { rows } = await pool.query(
+      "SELECT stock.stockid, name, system, quantity, price FROM stock INNER JOIN game_details ON stock.stockid = game_details.stockid WHERE releaseyear = $1",
+      [releaseyear],
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error getting system category: ", error);
+  }
+}
+
 async function postGameDetails(
   name,
   system,
@@ -81,5 +141,10 @@ module.exports = {
   getAllStock,
   getGameDetails,
   getFilterCategories,
+  getSystemResults,
+  getDeveloperResults,
+  getPublisherResults,
+  getGenreResults,
+  getReleaseYearResults,
   postGameDetails,
 };
