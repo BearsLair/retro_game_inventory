@@ -204,6 +204,25 @@ async function postEditGameDetails(
   }
 }
 
+async function removeGame(stockid) {
+  const client = await pool.connect();
+
+  try {
+    await client.query(`DELETE FROM stock WHERE stockid = $1`, [stockid]);
+
+    await client.query(`DELETE FROM game_details WHERE stockid = $1`, [
+      stockid,
+    ]);
+
+    await client.query(`COMMIT`);
+  } catch (error) {
+    await client.query(`ROLLBACK`);
+    console.error("error removing game from database", error);
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllStock,
   getGameDetails,
@@ -215,4 +234,5 @@ module.exports = {
   getReleaseYearResults,
   postGameDetails,
   postEditGameDetails,
+  removeGame,
 };
