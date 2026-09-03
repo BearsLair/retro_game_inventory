@@ -48,5 +48,8 @@ indexRouter.get("/edit/:id", storeControllers.getEditGameForm);
 // Post game edit to database
 indexRouter.post("/edit", validators, storeControllers.postEditGame);
 
+// Delete game from database
+indexRouter.get("/delete/:stockid", storeControllers.deleteGame);
+
 // Note to self: not exporting leads to TypeError (handler function needed)
 module.exports = indexRouter;

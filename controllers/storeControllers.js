@@ -192,6 +192,17 @@ async function postEditGame(req, res) {
   }
 }
 
+async function deleteGame(req, res) {
+  try {
+    console.log("Made it to controller");
+    console.log("parameter: ", req.params.stockid);
+    await db.removeGame(req.params.stockid);
+    res.redirect("/");
+  } catch (error) {
+    console.error("error deleting game: ", error);
+  }
+}
+
 // Note: not exporting leads to TypeError (handler function needed)
 module.exports = {
   getAllStock,
@@ -206,4 +217,5 @@ module.exports = {
   postGameDetails,
   getEditGameForm,
   postEditGame,
+  deleteGame,
 };

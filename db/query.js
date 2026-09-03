@@ -208,11 +208,11 @@ async function removeGame(stockid) {
   const client = await pool.connect();
 
   try {
-    await client.query(`DELETE FROM stock WHERE stockid = $1`, [stockid]);
-
     await client.query(`DELETE FROM game_details WHERE stockid = $1`, [
       stockid,
     ]);
+
+    await client.query(`DELETE FROM stock WHERE stockid = $1`, [stockid]);
 
     await client.query(`COMMIT`);
   } catch (error) {
