@@ -168,6 +168,42 @@ async function postGameDetails(
   }
 }
 
+async function postEditGameDetails(
+  stockid,
+  gameid,
+  name,
+  system,
+  quantity,
+  price,
+  developer,
+  publisher,
+  genre,
+  releaseyear,
+) {
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    await client.query(
+      `UPDATE stock SET name = $1, system = $2, quantity = $3, price = $4 WHERE stockid = $5`,
+      [name, system, quantity, price, stockid],
+    );
+
+    await client.query(
+      `UPDATE game_details SET developer = $1, publisher = $2, genre = $3, releaseyear = $4 WHERE gameid = $5`,
+      [developer, publisher, genre, releaseyear, gameid],
+    );
+
+    await client.query(`COMMIT`);
+  } catch (error) {
+    await client.query(`ROLLBACK`);
+    console.error("Error posting edit to database: ", error);
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getAllStock,
   getGameDetails,
@@ -178,4 +214,5 @@ module.exports = {
   getGenreResults,
   getReleaseYearResults,
   postGameDetails,
+  postEditGameDetails,
 };

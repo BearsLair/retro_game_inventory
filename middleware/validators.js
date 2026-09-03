@@ -57,4 +57,16 @@ exports.validators = [
     .withMessage("Year must be a valid year")
     .isLength({ min: 4, max: 4 })
     .withMessage("Year must be a valid 4 digit year"),
+  body("stockid")
+    .trim()
+    .notEmpty()
+    .withMessage("stock id error")
+    .isNumeric({ no_symbols: true })
+    .withMessage("stock id error"),
+  body("gameid")
+    .trim()
+    .notEmpty()
+    .withMessage("stock id error")
+    .isNumeric({ no_symbols: true })
+    .withMessage("game id error"),
 ];

@@ -7,10 +7,11 @@
   </head>
   <body>
     <h1>Edit Game</h1>
+    <%- include("partials/error.ejs") %>
     <a href="/">Back to Inventory</a>
     <%- include("partials/error.ejs") %>
     <form
-      action="/form"
+      action="/edit"
       method="POST"
       style="margin-top: 10px; display: flex; flex-direction: column"
     >
